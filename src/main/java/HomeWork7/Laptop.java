@@ -13,6 +13,10 @@ public class Laptop {
         return brand;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -21,17 +25,13 @@ public class Laptop {
         this.price = price;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     public void printInfo(){
-        System.out.println(brand + " " + price + " rub");
+        System.out.println(brand + ", " + price + " rub");
     }
 
     public static void main(String[] args) {
-        Laptop laptop = new Laptop("LG", 1000);
-        laptop.setPrice(1200);
+        Laptop laptop = new Laptop("LG", 1200);
+        laptop.setPrice(1600);
         laptop.printInfo();
     }
 }

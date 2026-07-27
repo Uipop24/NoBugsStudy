@@ -1,10 +1,10 @@
 package HomeWork7;
 
-public class Car{
+public class Car {
     String brand;
     int year;
 
-    public Car(String brand, int year){
+    public Car(String brand, int year) {
         this.brand = brand;
         this.year = year;
     }
@@ -26,13 +26,12 @@ public class Car{
     }
 
     public void print(){
-        System.out.println("Марка " + brand + ", Год выпуска " + year);
+        System.out.println(brand + " " + year);
     }
+
     public static void main(String[] args) {
-        Car newCar = new Car("Totoya",1999);
-        newCar.setYear(1898);
-        newCar.print();
+        Car car = new Car("Totoya", 2000);
+        car.setYear(1990);
+        car.print();
     }
 }
-
-

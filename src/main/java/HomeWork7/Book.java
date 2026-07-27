@@ -1,19 +1,11 @@
 package HomeWork7;
 
 public class Book {
-    String author;
     String title;
+    String author;
 
-    public Book(String autor, String title) {
-        this.author = autor;
+    public Book(String title, String author) {
         this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -25,14 +17,21 @@ public class Book {
         this.title = title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public void printInfo(){
         System.out.println(title + " " + author);
     }
 
     public static void main(String[] args) {
-        Book book1 = new Book("Lavcraft", "Zov Ktulhu");
-        book1.setAuthor("Gorkii");
-        book1.printInfo();
+        Book book = new Book("IT", "King");
+        book.setAuthor("Stiven");
+        book.printInfo();
     }
-
 }

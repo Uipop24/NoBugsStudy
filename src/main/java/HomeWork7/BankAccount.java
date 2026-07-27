@@ -1,5 +1,6 @@
 package HomeWork7;
 
+
 public class BankAccount {
     String owner;
     int balance;
@@ -13,14 +14,13 @@ public class BankAccount {
         return owner;
     }
 
-    public void setOwner(String owner){
-        this.owner = owner;
-    }
-
     public int getBalance() {
         return balance;
     }
 
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     public int deposit(int amount){
         balance = balance + amount;
@@ -37,10 +37,10 @@ public class BankAccount {
     }
 
     public static void main(String[] args) {
-        BankAccount bankAccount = new BankAccount("Васильчиков", 1000);
-        bankAccount.deposit(200);
-        bankAccount.withdraw(300);
+        BankAccount bankAccount = new BankAccount("Ivan", 1000);
+        bankAccount.deposit(500);
+        bankAccount.withdraw(8000);
         bankAccount.printBalance();
-
     }
+
 }

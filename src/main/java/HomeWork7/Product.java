@@ -4,7 +4,7 @@ public class Product {
     String name;
     double price;
 
-    public Product(String name, int price) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
@@ -17,23 +17,24 @@ public class Product {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public double applyDiscount(double discount){
+    public double applyDiscout(double discount){
         price = price - (price * discount / 100);
         return price;
     }
 
     public void printInfo(){
-        System.out.println(name + " " + price);
+        System.out.println(name + "," + price);
     }
 
     public static void main(String[] args) {
-        Product product = new Product("Хлеб", 200);
-        product.setPrice(400);
-        product.applyDiscount(10);
+        Product product = new Product("Apple", 100);
+        product.setPrice(220);
+        product.applyDiscout(8);
         product.printInfo();
+
     }
 }

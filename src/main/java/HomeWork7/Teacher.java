@@ -25,9 +25,13 @@ public class Teacher {
         this.subject = subject;
     }
 
+    public void printInfo(){
+        System.out.println(name + ", " + subject);
+    }
+
     public static void main(String[] args) {
         Teacher teacher = new Teacher("Tom", "Survive");
-        teacher.setSubject("math");
-        System.out.println(teacher.getName() + " " + teacher.getSubject());
+        teacher.setSubject("Math");
+        teacher.printInfo();
     }
 }

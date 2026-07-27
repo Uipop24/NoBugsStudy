@@ -22,13 +22,12 @@ public class Point {
     }
 
     public void print(){
-        System.out.println(x + " " + y);
-
+        System.out.println(x + ", " + y);
     }
 
     public static void main(String[] args) {
-        Point point = new Point(10, 15);
-        point.setX(100);
+        Point point = new Point(4,5);
+        point.setX(10);
         point.print();
     }
 }

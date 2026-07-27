@@ -1,22 +1,22 @@
 package HomeWork7;
 
 public class Circle {
-    int radius;
+    double radius;
 
-    public Circle(int radius) {
+    public Circle(double radius) {
         this.radius = radius;
     }
 
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 
-    public void setRadius(int radius) {
+    public void setRadius(double radius) {
         this.radius = radius;
     }
 
     public double calculateArea(){
-        return Math.PI * radius * radius;
+        return Math.PI * radius *radius;
     }
 
     public double calculateCircumference(){
@@ -24,9 +24,8 @@ public class Circle {
     }
 
     public static void main(String[] args) {
-        Circle circle = new Circle(100);
-        circle.setRadius(1000);
-        System.out.println(circle.calculateArea());
-        System.out.println(circle.calculateCircumference());
+        Circle circle = new Circle(10);
+        circle.setRadius(101);
+        System.out.println(circle.calculateArea() + ", " + circle.calculateCircumference());
     }
 }

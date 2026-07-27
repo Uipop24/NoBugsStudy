@@ -26,8 +26,9 @@ public class Rectangle {
     }
 
     public static void main(String[] args) {
-        Rectangle rectangle1 = new Rectangle(10, 2);
-        rectangle1.setWidth(1000);
-        System.out.println(rectangle1.calculateArea());
+        Rectangle rectangle = new Rectangle(10,10);
+        rectangle.setWidth(9);
+        System.out.println(rectangle.calculateArea());
+
     }
 }

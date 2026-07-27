@@ -26,12 +26,12 @@ public class StudentGroup {
     }
 
     public void printInfo(){
-        System.out.println(groupName + " " + studentCount);
+        System.out.println(groupName + ", " + studentCount);
     }
 
     public static void main(String[] args) {
-        StudentGroup studentGroup = new StudentGroup("Механикус", 60);
-        studentGroup.setStudentCount(44);
+        StudentGroup studentGroup = new StudentGroup("Meshanicus", 100);
+        studentGroup.setStudentCount(56);
         studentGroup.printInfo();
     }
 }
