@@ -5,23 +5,22 @@ public class MathConstants {
     final double E = 2.71828;
 
     static double calculateCircleArea(double r){
-        MathConstants mathConstants_area = new MathConstants();
-        return mathConstants_area.PI * r * r;
+        MathConstants mathConstants = new MathConstants();
+        return mathConstants.PI * r * r;
     }
 
-    static double calculateCircumference(double r) {
-        MathConstants mathConstants_Circumference = new MathConstants();
-        return 2 * mathConstants_Circumference.PI * r;
+    static double calculateCircumference(double r){
+        MathConstants mathConstants = new MathConstants();
+        return 2 * mathConstants.PI * r;
     }
 
     public double calculateExponentialGrowth(double initialValue, double rate, double time){
-        MathConstants mathConstants_growth = new MathConstants();
-        double result = initialValue * Math.pow(mathConstants_growth.E, (rate * time));
-        return result;
+        MathConstants mathConstants = new MathConstants();
+        return initialValue * Math.pow(mathConstants.E, (rate * time));
     }
 
     public static void main(String[] args) {
-        System.out.println(calculateCircumference(2) + " " + calculateCircleArea(3));
-        System.out.println(calculateCircumference(55) + " " + calculateCircleArea(75));
+        System.out.println(calculateCircleArea(10) + " " + calculateCircumference(90));
+        System.out.println(calculateCircleArea(15) + " " + calculateCircumference(190));
     }
 }

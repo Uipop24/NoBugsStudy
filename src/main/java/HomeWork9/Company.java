@@ -18,20 +18,19 @@ public class Company {
         this.employeeName = employeeName;
     }
 
-    static void printCompanyName() {
+    static void printCompanyName(){
         System.out.println(companyName);
     }
 
     public static void main(String[] args) {
-        Company company_employeer_first = new Company(1, "Peter");
-        Company company_employeer_second = new Company(2, "Ivan");
-        companyName = "STILKA";
+        Company employee_first = new Company(1, "Tom");
+        Company employee_second = new Company(2, "Ivan");
+        companyName = "HP";
         printCompanyName();
-        companyName = "RAZDAL";
-        //company_employeer_first.employeeID = 5;
-        System.out.println(companyName + " " + company_employeer_first.getEmployeeName());
-        System.out.println(companyName + " " + company_employeer_second.getEmployeeName());
-
+        companyName = "LG";
+        System.out.println(companyName + " " + employee_first.getEmployeeName());
+        System.out.println(companyName + " " + employee_second.getEmployeeName());
+        //employee_first.employeeID = 90;
 
     }
 }

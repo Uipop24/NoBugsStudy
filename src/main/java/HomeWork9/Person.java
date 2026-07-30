@@ -1,16 +1,14 @@
 package HomeWork9;
 
 public class Person {
-
     private String firstName;
     private String lastName;
     private final String ssn;
 
-
-    public Person(String ssn, String lastName, String firstName) {
-        this.ssn = ssn;
-        this.lastName = lastName;
+    public Person(String firstName, String lastName, String ssn) {
         this.firstName = firstName;
+        this.lastName = lastName;
+        this.ssn = ssn;
     }
 
     public String getFirstName() {
@@ -34,15 +32,15 @@ public class Person {
     }
 
     public void printPersonInfo(){
-        System.out.println("\"Имя: " + firstName + ", Фамилия: " + lastName + ", SSN: " + ssn + "\"");
+        System.out.println("\"Имя: " + getFirstName() + ", Фамилия: " + getLastName() + ", SSN: " + getSsn() + "\"");
     }
 
     public static void main(String[] args) {
-        Person person_one = new Person("123-45-6789", "Ruz", "Lan");
-        Person person_two = new Person("123-45-6781", "Ivan", "Lan");
-        person_one.setFirstName("Chao");
+        Person person_one = new Person("Tom", "Kruz", "123-45-6789");
+        Person person_two = new Person("Jack", "Russal", "123-45-6999");
+        person_two.setFirstName("Bob");
         person_one.printPersonInfo();
         person_two.printPersonInfo();
-    }
 
+    }
 }

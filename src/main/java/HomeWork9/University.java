@@ -10,25 +10,25 @@ public class University {
         this.studentName = studentName;
     }
 
-    static String changeUniversityName(String newName){
-        return universityName = newName;
-    }
-
     public String getStudentName() {
         return studentName;
     }
 
+    static String changeUniversityName(String newName){
+        return University.universityName = newName;
+    }
+
     public void printStudentInfo(){
-        System.out.println(studentName + " " + studentID + " " + universityName);
+        System.out.println(getStudentName() + " " + studentID + " " + University.universityName);
     }
 
     public static void main(String[] args) {
-        University student_first = new University(1, "Tom");
-        University student_second = new University(2, "Tom");
-        University student_third = new University(3, "Tom");
-        changeUniversityName("MXAT");
-        student_first.printStudentInfo();
-        student_second.printStudentInfo();
-        student_third.printStudentInfo();
+        University uni_student_first = new University(1, "Tom");
+        University uni_student_second = new University(2, "Ivan");
+        University uni_student_third = new University(3, "Russo");
+        changeUniversityName("МХАТ");
+        uni_student_first.printStudentInfo();
+        uni_student_second.printStudentInfo();
+        uni_student_third.printStudentInfo();
     }
 }

@@ -10,8 +10,8 @@ public class GameSettings {
         this.currentPlayers = currentPlayers;
     }
 
-    static void setMaxPlayer(int UpdateMaxPlayers){
-        maxPlayers = UpdateMaxPlayers;
+    static void setMaxPlayers(int updateMaxPlayers){
+        maxPlayers = updateMaxPlayers;
     }
 
     public void addPlayer(){
@@ -23,14 +23,15 @@ public class GameSettings {
     }
 
     public static void main(String[] args) {
-        GameSettings game_one = new GameSettings("GameName_1", 100);
-        GameSettings game_two = new GameSettings("GameName_2", 10);
-        setMaxPlayer(110);
+        GameSettings game_one = new GameSettings("IO", 5);
+        GameSettings game_two = new GameSettings("pupupu", 100);
+        setMaxPlayers(200);
         game_one.addPlayer();
         game_two.addPlayer();
+
         game_one.printGameStatus();
         game_two.printGameStatus();
 
-    }
 
+    }
 }
