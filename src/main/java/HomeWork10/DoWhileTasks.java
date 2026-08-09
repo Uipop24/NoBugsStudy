@@ -2,45 +2,43 @@ package HomeWork10;
 
 import java.util.Scanner;
 
-public class TasksDoWhile {
+public class DoWhileTasks {
     public static void main(String[] args) {
 //        Запрос положительного числа
-//        positiveNumber();
+//        positiveNum();
 //        Проверка пароля
-//        checkPassword();
+//        passwordCheck();
 //        Вывод чисел от 1 до 10 с использованием do-while
 //        numbersFromTo();
 //        Завершение программы по команде "exit"
-//        endOfProgram();
+//        exitProgram();
 //        Подсчёт количества цифр в числе
-        amountInNumber();
-
-
+        amountInNum();
 
 
     }
 
-    public static void positiveNumber() {
+    public static void positiveNum() {
         Scanner scanner = new Scanner(System.in);
         int number;
 
         do {
-            System.out.println("Введите положительное число :");
+            System.out.println("Введите положительно число: ");
             number = scanner.nextInt();
         } while (number <= 0);
-        System.out.println("Число положительное");
-
+        System.out.println("число положительное");
     }
 
-    public static void checkPassword() {
+    public static void passwordCheck() {
         Scanner scanner = new Scanner(System.in);
         String pass;
 
         do {
-            System.out.println("Введите пароль: ");
+            System.out.println("Введите пароль");
             pass = scanner.nextLine();
-        } while (!pass.equals("1234567"));
-        System.out.println("Пароль верный! Добро пожаловать");
+        } while (!pass.equals("NO_BUGS"));
+        System.out.println("Пароль верный! Добро пожаловать.");
+
     }
 
     public static void numbersFromTo() {
@@ -51,28 +49,29 @@ public class TasksDoWhile {
         } while (i <= 10);
     }
 
-    public static void endOfProgram(){
+    public static void exitProgram() {
         Scanner scanner = new Scanner(System.in);
         String string;
         do {
             System.out.println("Введите команду exit: ");
             string = scanner.nextLine();
-        }while (!string.equals("exit"));
+        } while (!string.equals("exit"));
         System.out.println("Программа завершена, хорошего дня!");
+
     }
 
-    public static void amountInNumber(){
+    public static void amountInNum() {
         Scanner scanner = new Scanner(System.in);
-        int number = scanner.nextInt();
+        int num = scanner.nextInt();
         int count = 0;
-        if (number == 0){
+        if (num == 0) {
             System.out.println(1);
             return;
         }
         do {
-            number = number / 10;
+            num = num / 10;
             count++;
-        }while (number != 0);
+        } while (num != 0);
         System.out.println(count);
     }
 }

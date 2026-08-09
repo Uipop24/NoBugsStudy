@@ -2,7 +2,7 @@ package HomeWork10;
 
 import java.util.Scanner;
 
-public class TasksBreakAndContinue {
+public class BreakAndContinueTasks {
     public static void main(String[] args) {
 //        Сумма чисел до первого отрицательного (использовать break)
 //        nonPositiveNumber();
@@ -11,14 +11,16 @@ public class TasksBreakAndContinue {
 //        Вывод только положительных чисел (использовать continue)
 //        onlyPositiveNumbers();
 //        Ввод строк до команды "stop" (использовать break)
-        inputStrings();
+        stopCommand();
+
 
     }
 
     public static void nonPositiveNumber() {
         Scanner scanner = new Scanner(System.in);
-        int num = 0;
+        int num;
         int sum = 0;
+
         while (true) {
             num = scanner.nextInt();
             if (num < 0) {
@@ -38,25 +40,29 @@ public class TasksBreakAndContinue {
         }
     }
 
-    public static void onlyPositiveNumbers(){
+    public static void onlyPositiveNumbers() {
         Scanner scanner = new Scanner(System.in);
-        while (true){
-            int a = scanner.nextInt();
-            if (a < 0){
+        int num;
+        while (true) {
+            num = scanner.nextInt();
+            if (num < 0) {
                 continue;
             }
-            System.out.println(a);
+            System.out.println(num);
         }
     }
 
-    public static void inputStrings(){
+    public static void stopCommand(){
         Scanner scanner = new Scanner(System.in);
+        String string;
         while (true){
-            String string = scanner.nextLine();
-            if(string.equals("stop")){
+            string = scanner.nextLine();
+            if(string.equals("exit")){
+                System.out.println("Завершаю работу...");
                 break;
             }
             System.out.println("Команда принята");
         }
     }
+
 }
