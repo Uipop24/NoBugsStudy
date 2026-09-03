@@ -11,9 +11,9 @@ public class TaskFor {
 //        Таблица умножения для числа
 //        multiply();
 //        Проверка на простое число
-//        isSimple();
+        isSimple();
 //        Вывод чисел от 1 до 10
-        print();
+//        print();
     }
 
     public static void numberDivideOnThree() {
@@ -52,6 +52,7 @@ public class TaskFor {
             for(int i = 2; i <= a - 1; i++){
                 if(a % i == 0){
                     isPrime = false;
+                    break;
                 }
             }
         }

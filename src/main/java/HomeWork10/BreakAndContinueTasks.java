@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class BreakAndContinueTasks {
     public static void main(String[] args) {
 //        Сумма чисел до первого отрицательного (использовать break)
-//        nonPositiveNumber();
+        nonPositiveNumber();
 //        Пропуск чисел, делящихся на 3 (использовать continue)
 //        skipNumbers();
 //        Вывод только положительных чисел (использовать continue)
 //        onlyPositiveNumbers();
 //        Ввод строк до команды "stop" (использовать break)
-        stopCommand();
+//        stopCommand();
 
 
     }
@@ -27,8 +27,9 @@ public class BreakAndContinueTasks {
                 break;
             }
             sum = sum + num;
-            System.out.println(sum);
+
         }
+        System.out.println(sum);
     }
 
     public static void skipNumbers() {
@@ -47,6 +48,9 @@ public class BreakAndContinueTasks {
             num = scanner.nextInt();
             if (num < 0) {
                 continue;
+            }
+            if (num == 0){
+                break;
             }
             System.out.println(num);
         }
