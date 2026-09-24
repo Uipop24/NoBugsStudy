@@ -4,20 +4,17 @@ import java.util.LinkedHashSet;
 
 public class LinkedHashSetCheckUniq {
 
-    private static LinkedHashSet<Integer> set = new LinkedHashSet<>();
-
-    public static void addUniq(int num) {
-        if (!set.contains(num)) {
-            set.add(num);
-        } else {
+    private static void addUniq(LinkedHashSet<Integer> set, int num) {
+        if (!set.add(num)) {
             System.out.println(num + " данный элемент есть, добавлен не был");
         }
     }
 
     public static void main(String[] args) {
-        addUniq(1);
-        addUniq(2);
-        addUniq(2);
+        LinkedHashSet<Integer> set = new LinkedHashSet<>();
+        addUniq(set,1);
+        addUniq(set,2);
+        addUniq(set,2);
 
         System.out.println(set);
     }
