@@ -37,6 +37,8 @@ build/
 ### Mac OS ###
 .DS_Store
 /src/main/java/TasksMD/
+src/main/java/Debik
 
 ### opencode ###
 AGENTS.md
+
