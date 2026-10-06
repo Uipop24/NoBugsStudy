@@ -1,13 +1,13 @@
 package practice6.Jenericks;
 
 public class Box<T> {
-    private T t;
+    private T item;
 
-    public T getT() {
-        return t;
+    public T get() {
+        return item;
     }
 
-    public void setT(T t) {
-        this.t = t;
+    public void set(T item) {
+        this.item = item;
     }
 }
