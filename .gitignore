@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+/src/main/java/Theory
 
 ### Eclipse ###
 .apt_generated
@@ -40,5 +41,5 @@ build/
 
 ### opencode ###
 AGENTS.md
-/src/main/java/Theory
+
 
