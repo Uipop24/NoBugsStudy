@@ -10,7 +10,6 @@ public class FindMaxNumber {
 
         Optional<Integer> maxNum = list.stream()
                 .max(Comparator.naturalOrder());
-//              на самом деле не понимаю, как будто можно решить по другому, и данный способ - некорректный
         System.out.println(maxNum.orElseThrow());
     }
 }

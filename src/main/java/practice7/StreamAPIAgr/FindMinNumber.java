@@ -11,7 +11,6 @@ public class FindMinNumber {
 
         Optional<Integer> minNum = list.stream()
                 .min(Comparator.naturalOrder());
-//              на самом деле не понимаю, как будто можно решить по другому, и данный способ - некорректный
         System.out.println(minNum.orElseThrow());
     }
 

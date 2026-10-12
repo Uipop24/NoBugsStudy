@@ -14,7 +14,7 @@ public class FindFirstAndFindAny {
         System.out.println(findFirst);
 
         String findAny = list.stream()
-                .filter(s -> s.startsWith("С"))
+                .filter(s -> s.contains("л"))
                 .findAny()
                 .get();
 
