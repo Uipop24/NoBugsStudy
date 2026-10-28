@@ -6,7 +6,7 @@ public class LeapYearTestBase {
     protected LeapYear leapYear;
 
     @BeforeEach
-    protected void setUp() {
+    protected void setUp(){
         leapYear = new LeapYear();
     }
 

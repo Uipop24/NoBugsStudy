@@ -10,32 +10,33 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class ReverseOfStringTest extends ReverseOfStringTestBase{
+public class ReverseOfStringTest extends ReverseOfStringTestBase {
 
-    public static Stream<Arguments> reverseStrings(){
+    public static Stream<Arguments> simpleStrings(){
         return Stream.of(
-                Arguments.of("ashsa", "ashsa"),
-                Arguments.of("12345", "54321"),
-                Arguments.of("Maksim", "miskaM")
+                Arguments.of("12345","54321"),
+                Arguments.of("Maskim","miksaM"),
+                Arguments.of("1a2b3c","c3b2a1")
         );
     }
 
     @ParameterizedTest
-    @MethodSource("reverseStrings")
-    public void reverseString(String input, String output){
+    @MethodSource("simpleStrings")
+    public void reverseStrings(String input, String expected){
         String actual = reverseOfString.reverse(input);
-        assertEquals(output, actual);
+        assertEquals(expected,actual);
     }
 
     @Test
-    public void reverseEmptyString(){
+    public void emptyString(){
         String actual = reverseOfString.reverse("");
         String expected = "";
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void reverseNullReturnsNull(){
         assertNull(reverseOfString.reverse(null));
     }
+
 }

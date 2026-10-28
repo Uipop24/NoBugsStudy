@@ -2,41 +2,37 @@ package practice9;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class IsEvenTest extends IsEvenTestBase {
-
+public class IsEvenTest extends IsEvenTestBase{
     @Test
-    public void checkEvenNumberIsTrue(){
+    public void evenNumber(){
         boolean actual = isEven.isEven(2);
         assertTrue(actual);
     }
 
     @Test
-    public void checkEvenNumberIsFalse(){
-        boolean actual = isEven.isEven(1);
+    public void notEvenNumber(){
+        boolean actual = isEven.isEven(3);
         assertFalse(actual);
     }
 
     @Test
-    public void checkZeroForEven(){
+    public void zeroIsEven(){
         boolean actual = isEven.isEven(0);
         assertTrue(actual);
     }
 
     @Test
-    public void checkNegativeEvenNumberIsTrue(){
+    public void negativeNumberIsEven(){
         boolean actual = isEven.isEven(-2);
         assertTrue(actual);
     }
 
     @Test
-    public void checkNegativeOddNumberIsFalse(){
+    public void negativeNumberIsNotEven(){
         boolean actual = isEven.isEven(-1);
         assertFalse(actual);
     }
-
-
-
-
 }

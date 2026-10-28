@@ -4,8 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class CheckPasswordTestBase {
     protected CheckPassword checkPassword;
+
     @BeforeEach
-    protected void setUp(){
+    protected void setUp() {
         checkPassword = new CheckPassword();
     }
 }

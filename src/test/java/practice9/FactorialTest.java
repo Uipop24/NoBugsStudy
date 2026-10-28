@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactorialTest extends FactorialTestBase{
 
+
     public static Stream<Arguments> smallNumbers(){
         return Stream.of(
                 Arguments.of(1, 1),
@@ -20,25 +21,21 @@ public class FactorialTest extends FactorialTestBase{
         );
     }
 
-
     @Test
-    public void factorialZero(){
+    public void factorialOfZero(){
         int actual = factorial.factorial(0);
         int expected = 1;
         assertEquals(expected, actual);
     }
-
     @ParameterizedTest
     @MethodSource("smallNumbers")
     public void factorialOfSmallNumbers(int num, int expected){
-        int actual = factorial.factorial(num);
-        assertEquals(expected, actual);
-
+       int actual = factorial.factorial(num);
+       assertEquals(expected, actual);
     }
 
     @Test
     public void negativeNumberGivesException(){
         assertThrows(IllegalArgumentException.class, () -> factorial.factorial(-1));
     }
-
 }

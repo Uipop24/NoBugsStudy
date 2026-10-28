@@ -7,28 +7,28 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CheckValidPhoneNumberTest extends CheckValidPhoneNumberTestBase {
+public class CheckValidPhoneNumberTest extends CheckValidPhoneNumberTestBase{
 
-    @Test
-    public void correctPhoneNumber() {
-        boolean actual = checkValidPhoneNumber.isValidPhoneNumber("+1 1234567890");
-        assertTrue(actual);
-    }
-
-    public static Stream<Arguments> notValidPhoneNumbers() {
+    public static Stream<Arguments> invalidPhoneNumbers(){
         return Stream.of(
                 Arguments.of("12345", false),
                 Arguments.of("invalid", false)
         );
     }
 
+    @Test
+    public void checkCorrectNumber(){
+        boolean actual = checkValidPhoneNumber.isValidPhoneNumber("+1 1234567890");
+        assertTrue(actual);
+    }
+
     @ParameterizedTest
-    @MethodSource("notValidPhoneNumbers")
-    public void notValidPhoneNums(String num, boolean expected) {
-        boolean actual = checkValidPhoneNumber.isValidPhoneNumber(num);
-        assertEquals(expected, actual);
+    @MethodSource("invalidPhoneNumbers")
+    public void checkNotValidNumbers(String number, boolean expected){
+        boolean actual = checkValidPhoneNumber.isValidPhoneNumber(number);
+        assertFalse(actual);
     }
 }

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CountVowelsTest extends CountVowelsTestBase{
+public class CountVowelsTest extends CountVowelsTestBase {
 
     public static Stream<Arguments> validStringsToCountVowels() {
         return Stream.of(
@@ -19,30 +19,27 @@ public class CountVowelsTest extends CountVowelsTestBase{
                 Arguments.of("AEIOU", 5),
                 Arguments.of("", 0),
                 Arguments.of("12345", 0),
-                Arguments.of("1e2d3a", 2)
+                Arguments.of("1e2l3e4h5o", 3)
         );
     }
 
-
     @ParameterizedTest
     @MethodSource("validStringsToCountVowels")
-    public void countVowelsOfSomeStrings(String input, int expectedCount) {
+    public void countVowelsOfSomeStrings(String input, int expectedCount){
         int actual = countVowels.countVowels(input);
-
-        assertEquals(expectedCount, actual);
+        assertEquals(expectedCount,actual);
     }
 
     @Test
-    public void noVowelsInput() {
-        int expected = 0;
-        int actual = countVowels.countVowels("SDFG");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void throwsExceptionOnNullInput() {
+    public void throwsExceptionOnNullInput(){
         assertThrows(IllegalArgumentException.class, () -> countVowels.countVowels(null));
     }
 
+    @Test
+    public void stringWithoutVowel(){
+        int expected = 0;
+        int actual = countVowels.countVowels("SFDgptrS");
+        assertEquals(expected, actual);
+    }
 
 }

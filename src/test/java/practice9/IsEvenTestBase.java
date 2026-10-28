@@ -7,6 +7,6 @@ public class IsEvenTestBase {
 
     @BeforeEach
     protected void setUp(){
-         isEven = new IsEven();
+        isEven = new IsEven();
     }
 }

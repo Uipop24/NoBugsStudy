@@ -6,19 +6,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CheckForAnagramTest extends CheckForAnagramTestBase {
     @Test
-    public void stringsIsAnagram(){
+    public void stringsIsAnagram() {
         boolean actual = checkForAnagram.isAnagram("listen", "silent");
         assertTrue(actual);
     }
 
     @Test
-    public void stringsIsNotAnagram(){
+    public void stringsIsNotAnagram() {
         boolean actual = checkForAnagram.isAnagram("java", "python");
         assertFalse(actual);
     }
 
     @Test
-    public void checkNullForAnagram(){
+    public void checkNullForAnagram() {
         boolean actual = checkForAnagram.isAnagram(null, "python");
         assertFalse(actual);
     }

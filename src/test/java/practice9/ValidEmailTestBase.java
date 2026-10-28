@@ -2,7 +2,7 @@ package practice9;
 
 import org.junit.jupiter.api.BeforeEach;
 
-public class ValidMailTestBase {
+public class ValidEmailTestBase {
     protected ValidEmail validEmail;
 
     @BeforeEach

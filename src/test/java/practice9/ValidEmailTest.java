@@ -7,9 +7,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class ValidMailTest extends ValidMailTestBase {
+public class ValidEmailTest extends ValidEmailTestBase{
 
     public static Stream<Arguments> emails(){
         return Stream.of(

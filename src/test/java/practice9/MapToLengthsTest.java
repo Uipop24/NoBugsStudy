@@ -6,10 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MapToLengthsTest extends MapToLengthsTestBase{
+public class MapToLengthsTest extends MapToLengthsTestBase {
 
     @Test
-    public void correctMapToMapLength(){
+    public void correctMapToMapLength() {
         List<Integer> actual = mapToLengths.mapToLengths(List.of("Java", "C++", "Go"));
         List<Integer> expected = List.of(4, 3, 2);
         assertEquals(expected, actual);
