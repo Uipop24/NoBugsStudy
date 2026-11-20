@@ -33,7 +33,7 @@ public class InventoryService {
         if(list == null || list.isEmpty()){
             throw new OutOfStockException("Товаров в выбранной категории нет");
         }else {
-          return List.copyOf(list);
+            return List.copyOf(list);
         }
     }
 

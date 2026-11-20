@@ -7,11 +7,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class InventoryServiceTest {
+public class InventoryServiceTest extends InventoryServiceBase {
 
     @Test
     public void checkAddingProductIfInventoryIsOpen() {
-        InventoryService inventoryService = new InventoryService();
         inventoryService.setIsInventoryOpen(true);
         Product product = new Product("Пиво", 20, "Алкоголь");
         inventoryService.addToInventory(product);
@@ -22,7 +21,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkAddingProductIfInventoryIsClosed() {
-        InventoryService inventoryService = new InventoryService();
         inventoryService.setIsInventoryOpen(false);
         Product product = new Product("Пиво", 20, "Алкоголь");
         inventoryService.addToInventory(product);
@@ -31,13 +29,11 @@ public class InventoryServiceTest {
 
     @Test
     public void checkCategoryIsEmpty(){
-        InventoryService inventoryService = new InventoryService();
         assertThrows(OutOfStockException.class, () -> inventoryService.getProductsByCategory("Напитки"));
     }
 
-    @Test //добавить параметаризованный тест? можно ли параметаризировать добавление?
+    @Test
     public void checkFilterByCategory(){
-        InventoryService inventoryService = new InventoryService();
         Product beer = new Product("Пиво", 20, "Алкоголь");
         Product cola = new Product("Кола", 11, "Напитки");
         Product juice = new Product("Добрый", 6, "Напитки");
@@ -51,7 +47,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkFilterByEmptyCategory(){
-        InventoryService inventoryService = new InventoryService();
         Product beer = new Product("Пиво", 20, "Напитки");
         inventoryService.addToInventory(beer);
         List<Product> actual = inventoryService.filterByCategory("Стройматериалы");
@@ -61,7 +56,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkFilterByPrice(){
-        InventoryService inventoryService = new InventoryService();
         Product beer = new Product("Пиво", 20.2, "Алкоголь");
         Product cola = new Product("Кола", 11.1, "Напитки");
         inventoryService.addToInventory(beer);
@@ -73,7 +67,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkFilterByWrongPrice(){
-        InventoryService inventoryService = new InventoryService();
         Product beer = new Product("Пиво", 20.2, "Алкоголь");
         Product cola = new Product("Кола", 11.1, "Напитки");
         inventoryService.addToInventory(beer);
@@ -85,7 +78,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkAddingDuplicateProduct() {
-        InventoryService inventoryService = new InventoryService();
         Product beer = new Product("Пиво", 20, "Напитки");
         inventoryService.addToInventory(beer);
         inventoryService.addToInventory(beer);
@@ -96,7 +88,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkAddingProductAfterReopeningInventory() {
-        InventoryService inventoryService = new InventoryService();
         inventoryService.setIsInventoryOpen(false);
         Product blockedProduct = new Product("Пиво", 20, "Напитки");
         inventoryService.addToInventory(blockedProduct);
@@ -110,7 +101,6 @@ public class InventoryServiceTest {
 
     @Test
     public void checkProductsDoNotMixBetweenCategories() {
-        InventoryService inventoryService = new InventoryService();
         Product beer = new Product("Пиво", 20, "Напитки");
         Product nails = new Product("Гвозди", 5, "Стройматериалы");
         inventoryService.addToInventory(beer);

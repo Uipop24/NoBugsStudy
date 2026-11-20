@@ -7,238 +7,196 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EntityManagerTest {
+public class EntityManagerTest extends EntityManagerBase {
 
     @Test
     public void addElementIntoEmptyCollection() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        EntityManager<Worker> emptyList = new EntityManager<>();
-        emptyList.addEntity(workerAnna);
-        assertTrue(emptyList.getAll().contains(workerAnna));
+        Worker worker = new Worker(20, "Anna", true);
+        entityManager.addEntity(worker);
+        assertTrue(entityManager.getAll().contains(worker));
     }
 
     @Test
-    public void addElementIntoEmptyCollectionSizeCheck() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        EntityManager<Worker> emptyList = new EntityManager<>();
-        emptyList.addEntity(workerAnna);
+    public void checkCollectionSizeAfterOneAdd() {
+        Worker worker = new Worker(20, "Anna", true);
+        entityManager.addEntity(worker);
         int expectedSize = 1;
-        assertEquals(expectedSize, emptyList.getAll().size());
+        assertEquals(expectedSize, entityManager.getAll().size());
     }
 
-    @Test
-    public void addElementIntoCollectionWithSomeElements() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
+    @Test //не уверен что такой тест нужен, на проверку нескольких добавлений
+    public void checkCollectionSizeAfterSomeAdd() {
+        Worker worker = new Worker(20, "Anna", true);
+        Worker worker1 = new Worker(20, "Anna1", true);
+        Worker worker2 = new Worker(20, "Anna2", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
         int expectedSize = 3;
-        assertEquals(expectedSize, workerList.getAll().size());
-    }
-
-        @Test
-    public void removeElementFromList() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        assertTrue(workerList.remove(workerAnna));
+        assertEquals(expectedSize, entityManager.getAll().size());
     }
 
     @Test
-    public void removeElementFromEmptyList() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        assertFalse(workerList.remove(workerAnna));
+    public void removeElementFromCollection() {
+        Worker worker = new Worker(20, "Anna", true);
+        entityManager.addEntity(worker);
+        assertTrue(entityManager.removeEntity(worker));
     }
 
     @Test
-    public void checkSizeAfterRemove() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.remove(workerAnna);
-        int expectedSize = 0;
-        assertEquals(expectedSize, workerList.getAll().size());
+    public void removeElementFromEmptyCollection() {
+        Worker worker = new Worker(20, "Anna", true);
+        assertFalse(entityManager.removeEntity(worker));
     }
 
     @Test
-    public void checkGetAllFromListWithDeletedElement() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
-        workerList.remove(workerVictor);
-        assertFalse(workerList.getAll().contains(workerVictor));
+    public void chekCetAllAfterRemoveElement() {
+        Worker worker = new Worker(20, "Anna", true);
+        Worker worker1 = new Worker(20, "Anna1", true);
+        Worker worker2 = new Worker(20, "Anna2", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        entityManager.removeEntity(worker1);
+        int expectedSize = 2;
+        assertEquals(expectedSize, entityManager.getAll().size());
     }
 
     @Test
-    public void removeFromCopyOfList() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        List<Worker> copyList = workerList.getAll();
-        assertThrows(UnsupportedOperationException.class, () -> copyList.remove(workerAnna));
+    public void checkRemoveFromCopyOfList() {
+        Worker worker = new Worker(20, "Anna", true);
+        entityManager.addEntity(worker);
+        List<Worker> copyList = entityManager.getAll();
+        assertThrows(UnsupportedOperationException.class, () -> copyList.remove(worker));
     }
 
     @Test
-    public void checkOverrideEqualsAndHashCode() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerAnnaTheSecond = new Worker(20, "Anna", true);
-        assertEquals(workerAnna, workerAnnaTheSecond);
+    public void checkOverRideEqualsAndHashCode() {
+        Worker worker = new Worker(20, "Anna", true);
+        Worker worker1 = new Worker(20, "Anna", true);
+        assertEquals(worker, worker1);
     }
 
     @Test
-    public void checkFilterByAge() {
-        Worker workerAnna = new Worker(0, "Anna", true);
-        Worker workerVictor = new Worker(99, "Victor", true);
-        Worker workerDog = new Worker(100, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
-        List<Worker> expectedList = List.of(workerAnna, workerVictor);
-        List<Worker> actualList = workerList.filterByAge(0, 99);
+    public void checkAgeFilter() {
+        Worker worker = new Worker(0, "Anna", true);
+        Worker worker1 = new Worker(100, "Anna1", true);
+        Worker worker2 = new Worker(99, "Anna2", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByAge(0, 99);
+        List<Worker> expectedList = List.of(worker, worker2);
         assertEquals(expectedList, actualList);
-
     }
 
     @Test
     public void checkNegativeAge() {
         assertThrows(IllegalArgumentException.class, () -> new Worker(-1, "Anna", true));
-
     }
 
     @Test
-    public void checkAgeMoreThan100() {
+    public void checkAgeOver100() {
         assertThrows(IllegalArgumentException.class, () -> new Worker(101, "Anna", true));
-
     }
 
     @Test
-    public void checkFilterByAgeEmptyList() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
+    public void checkAgeFilterEmptyList() {
+        Worker worker = new Worker(25, "Anna", true);
+        Worker worker1 = new Worker(26, "Anna1", true);
+        Worker worker2 = new Worker(27, "Anna2", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByAge(28, 99);
         List<Worker> expectedList = List.of();
-        List<Worker> actualList = workerList.filterByAge(23, 89);
         assertEquals(expectedList, actualList);
     }
 
     @Test
     public void checkFilterByName() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
-        List<Worker> expectedList = List.of(workerVictor);
-        List<Worker> actualList = workerList.filterByName("Victor");
+        Worker worker = new Worker(25, "Anna", true);
+        Worker worker1 = new Worker(26, "Anna1", true);
+        Worker worker2 = new Worker(27, "Anna", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByName("Anna");
+        List<Worker> expectedList = List.of(worker, worker2);
         assertEquals(expectedList, actualList);
     }
 
     @Test
-    public void checkFilterByNameGetEmptyList() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
+    public void checkFilterByNameEmptyList() {
+        Worker worker = new Worker(25, "Anna", true);
+        Worker worker1 = new Worker(26, "Anna1", true);
+        Worker worker2 = new Worker(27, "Anna2", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByName("Victor");
         List<Worker> expectedList = List.of();
-        List<Worker> actualList = workerList.filterByName("Ivan");
-        assertEquals(expectedList, actualList);
-    }
-
-
-    @Test
-    public void checkFilterByNameDuplicateNames() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerAnnaTheSecond = new Worker(22, "Anna", true);
-        Worker workerDog = new Worker(90, "Dog", false);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerAnnaTheSecond);
-        workerList.addEntity(workerDog);
-        List<Worker> expectedList = List.of(workerAnna, workerAnnaTheSecond);
-        List<Worker> actualList = workerList.filterByName("Anna");
         assertEquals(expectedList, actualList);
     }
 
     @Test
-    public void checkFilterByActivityTrue() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", false);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
-        List<Worker> expectedList = List.of(workerAnna, workerVictor);
-        List<Worker> actualList = workerList.filterByActive(true);
+    public void checkActivityTrue() {
+        Worker worker = new Worker(25, "Anna", true);
+        Worker worker1 = new Worker(26, "Anna1", true);
+        Worker worker2 = new Worker(27, "Anna2", false);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByActive(true);
+        List<Worker> expectedList = List.of(worker, worker1);
         assertEquals(expectedList, actualList);
     }
 
     @Test
-    public void checkFilterByActivityFalse() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", false);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
-        List<Worker> expectedList = List.of(workerDog);
-        List<Worker> actualList = workerList.filterByActive(false);
+    public void checkActivityFalse() {
+        Worker worker = new Worker(25, "Anna", true);
+        Worker worker1 = new Worker(26, "Anna1", false);
+        Worker worker2 = new Worker(27, "Anna2", false);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByActive(false);
+        List<Worker> expectedList = List.of(worker1, worker2);
         assertEquals(expectedList, actualList);
     }
 
     @Test
-    public void checkFilterByActivityEmptyList() {
-        Worker workerAnna = new Worker(20, "Anna", true);
-        Worker workerVictor = new Worker(22, "Victor", true);
-        Worker workerDog = new Worker(90, "Dog", true);
-        EntityManager<Worker> workerList = new EntityManager<>();
-        workerList.addEntity(workerAnna);
-        workerList.addEntity(workerVictor);
-        workerList.addEntity(workerDog);
+    public void checkActivityEmptyList() {
+        Worker worker = new Worker(25, "Anna", true);
+        Worker worker1 = new Worker(26, "Anna1", true);
+        Worker worker2 = new Worker(27, "Anna2", true);
+        entityManager.addEntity(worker);
+        entityManager.addEntity(worker1);
+        entityManager.addEntity(worker2);
+        List<Worker> actualList = entityManager.filterByActive(false);
         List<Worker> expectedList = List.of();
-        List<Worker> actualList = workerList.filterByActive(false);
         assertEquals(expectedList, actualList);
     }
 
     @Test
-    public void raceCondition() throws InterruptedException {
-        EntityManager<Worker> workerList = new EntityManager<>();
+    public void checkRaceCondition() throws InterruptedException {
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             int index = i;
-            threads.add(new Thread(() -> {
+            threads.add(new Thread(() ->{
                 for (int j = 0; j < 100; j++) {
-                    workerList.addEntity(new Worker(20, "Worker-" + index + "-" + j, true));
+                    entityManager.addEntity(new Worker(25, "Anna", true));
                 }
             }));
         }
-        for (Thread thread : threads) {
+        for(Thread thread: threads){
             thread.start();
         }
-        for (Thread thread : threads) {
+
+        for(Thread thread: threads){
             thread.join();
         }
-        assertEquals(1000, workerList.getAll().size());
+        assertEquals(1000, entityManager.getAll().size());
     }
-
-
 }
+

@@ -12,7 +12,6 @@ public abstract class Entity {
             throw new IllegalArgumentException();
         }
         this.age = age;
-
         this.name = name;
         this.active = active;
     }
@@ -29,10 +28,6 @@ public abstract class Entity {
         return active;
     }
 
-    @Override
-    public String toString() {
-        return name + ", " + age + ", active=" + active;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -44,5 +39,14 @@ public abstract class Entity {
     @Override
     public int hashCode() {
         return Objects.hash(age, name, active);
+    }
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                '}';
     }
 }

@@ -10,6 +10,13 @@ public class Movie {
     }
 
     @Override
+    public String toString() {
+        return "Movie{" +
+                "movieName='" + movieName + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
@@ -19,12 +26,5 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hashCode(movieName);
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "movieName='" + movieName + '\'' +
-                '}';
     }
 }

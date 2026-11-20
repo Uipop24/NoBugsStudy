@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TaskServiceTest {
+public class TaskServiceTest{
 
     @Test
     public void checkAddTaskWithIntId() {
@@ -43,7 +43,7 @@ public class TaskServiceTest {
         Task<String> task = new Task<>("12345", "resolved", "low", LocalDate.of(2026, 11, 16));
         TaskService<String> taskService = new TaskService<>();
         taskService.addTask(task);
-        taskService.deleteTask("12345");
+        taskService.removeTask("12345");
         List<Task<String>> actual = taskService.getAllTasks();
         List<Task<String>> expected = List.of();
         assertEquals(expected, actual);

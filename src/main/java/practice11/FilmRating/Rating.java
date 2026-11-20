@@ -10,8 +10,4 @@ public class Rating <T extends Number>{
     public T getRating() {
         return rating;
     }
-
-
-
-
 }

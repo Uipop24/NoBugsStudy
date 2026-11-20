@@ -12,13 +12,12 @@ public class TaskService <T>{
     public void addTask(Task<T> task){
         if(!tasks.containsKey(task.getId())){
             tasks.put(task.getId(), task);
-        }else{
-            throw new IdDuplicateException("Задача с таким id уже создана");
+        }else {
+            throw new IdDuplicateException("Задача с такисм id уже создана");
         }
-
     }
 
-    public synchronized void deleteTask(T id){
+    public synchronized void removeTask(T id){
         tasks.remove(id);
     }
 
@@ -27,6 +26,7 @@ public class TaskService <T>{
                 .filter(tTask -> tTask.getStatus().equals(status))
                 .toList();
     }
+
 
     public List<Task<T>> filterByPriority(String priority){
         return tasks.values().stream()
@@ -43,4 +43,5 @@ public class TaskService <T>{
     public List<Task<T>> getAllTasks(){
         return List.copyOf(tasks.values());
     }
+
 }

@@ -11,153 +11,92 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GradeServiceTest {
+public class GradeServiceTest extends GradeServiceBase{
 
-    public static Stream<Arguments> listOfStudentsIntGrades() {
+    public static Stream<Arguments> listOfStudentsGrades(){
         return Stream.of(
-                Arguments.of("Виктор", "география", 0),
-                Arguments.of("Виктор", "химия", 1),
-                Arguments.of("Виктор", "математика", 99),
-                Arguments.of("Виктор", "физика", 100)
-        );
-    }
-
-    public static Stream<Arguments> listOfStudentsDoubleGrades() {
-        return Stream.of(
-                Arguments.of("Виктор", "география", 0.1),
-                Arguments.of("Виктор", "химия", 99.9)
+                Arguments.of("Ivan", "geo", 0),
+                Arguments.of("Ruslan", "geo", 100),
+                Arguments.of("Maxim", "geo", 99),
+                Arguments.of("Marina", "geo", 1)
         );
     }
 
 
-    public static Stream<Arguments> listOfStudentsIncorrectIntGrades() {
+    public static Stream<Arguments> listOfStudentsIncorrectGrades(){
         return Stream.of(
-                Arguments.of("Виктор", "география", -1),
-                Arguments.of("Виктор", "химия", 101)
-        );
-    }
-
-    public static Stream<Arguments> listOfStudentsIncorrectDoubleGrades() {
-        return Stream.of(
-                Arguments.of("Виктор", "география", -0.1),
-                Arguments.of("Виктор", "химия", 100.1)
+                Arguments.of("Ivan", "geo", -1),
+                Arguments.of("Ruslan", "geo", 101)
         );
     }
 
     @ParameterizedTest
-    @MethodSource("listOfStudentsIntGrades")
-    public void addCorrectIntGrade(String name, String subject, int grade) {
-        GradeService<Integer> gradeService = new GradeService<>();
-        StudentGrade<Integer> studentGrade = new StudentGrade<>(name, subject, grade);
-        assertDoesNotThrow(() -> gradeService.addGrade(studentGrade));
-    }
-
-    @ParameterizedTest
-    @MethodSource("listOfStudentsDoubleGrades")
-    public void addCorrectDoubleGrade(String name, String subject, double grade) {
-        GradeService<Double> gradeService = new GradeService<>();
+    @MethodSource("listOfStudentsGrades")
+    public void addCorrectGrade(String name, String subject, double grade){
         StudentGrade<Double> studentGrade = new StudentGrade<>(name, subject, grade);
         assertDoesNotThrow(() -> gradeService.addGrade(studentGrade));
     }
 
-
     @ParameterizedTest
-    @MethodSource("listOfStudentsIncorrectIntGrades")
-    public void addIncorrectIntGrade(String name, String subject, int grade) {
-        GradeService<Integer> gradeService = new GradeService<>();
-        StudentGrade<Integer> studentGrade = new StudentGrade<>(name, subject, grade);
-        assertThrows(InvalidGradeException.class, () -> gradeService.addGrade(studentGrade));
-    }
-
-    @ParameterizedTest
-    @MethodSource("listOfStudentsIncorrectDoubleGrades")
-    public void addIncorrectDoubleGrade(String name, String subject, double grade) {
-        GradeService<Double> gradeService = new GradeService<>();
+    @MethodSource("listOfStudentsIncorrectGrades")
+    public void addIncorrectGrade(String name, String subject, double grade){
         StudentGrade<Double> studentGrade = new StudentGrade<>(name, subject, grade);
         assertThrows(InvalidGradeException.class, () -> gradeService.addGrade(studentGrade));
     }
 
     @Test
-    public void checkAvgIntGrade() {
-        GradeService<Integer> gradeService = new GradeService<>();
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 0));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 10));
-        double expectedGrade = 5.0;
-        double actualGrade = gradeService.avgGrade("география");
-        assertEquals(expectedGrade, actualGrade);
+    public void checkAvgGrade(){
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 0.1));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 9.9));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "math", 99.0));
+        double expectedAvgGrade = 5.0;
+        double actualAvgGrade = gradeService.avgGrade("geo");
+        assertEquals(expectedAvgGrade, actualAvgGrade);
     }
 
     @Test
-    public void checkAvgDoubleGrade() {
-        GradeService<Double> gradeService = new GradeService<>();
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 0.1));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 9.9));
-        double expectedGrade = 5.0;
-        double actualGrade = gradeService.avgGrade("география");
-        assertEquals(expectedGrade, actualGrade);
-
-    }
-
-    @Test
-    public void checkAvgGradeWithoutSubject() {
-        GradeService<Double> gradeService = new GradeService<>();
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 0.1));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 9.9));
-        assertThrows(InvalidGradeException.class, () -> gradeService.avgGrade("химия"));
-    }
-
-    @Test
-    public void checkAvgIntGradeInOneOfSubjectInList() {
-        GradeService<Integer> gradeService = new GradeService<>();
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 0));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 10));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "химия", 25));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "химия", 50));
-        double expectedGrade = 37.5;
-        double actualGrade = gradeService.avgGrade("химия");
-        assertEquals(expectedGrade, actualGrade);
+    public void checkAvgGradeWithOutSubject(){
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 0.1));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 9.9));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "math", 99.0));
+        assertThrows(InvalidGradeException.class, () ->gradeService.avgGrade("art"));
     }
 
     @Test
     public void checkSizeOfList() {
-        GradeService<Integer> gradeService = new GradeService<>();
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 0));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 10));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "химия", 25));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "химия", 50));
-        int expectedSize = 4;
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 0.1));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 9.9));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "math", 99.0));
+        int expectedSize = 3;
         int actualSize = gradeService.getAll().size();
         assertEquals(expectedSize, actualSize);
     }
 
     @Test
-    public void checkElementCantBeDeleted() {
-        GradeService<Integer> gradeService = new GradeService<>();
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 0));
-        gradeService.addGrade(new StudentGrade<>("Виктор", "география", 10));
+    public void checkElementCanNotBeDeleted(){
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 0.1));
+        gradeService.addGrade(new StudentGrade<>("Ivan", "geo", 9.9));
         assertThrows(UnsupportedOperationException.class, () -> gradeService.getAll().removeFirst());
     }
 
     @Test
-    public void checkThreadSafety() throws InterruptedException {
-        GradeService<Integer> gradeService = new GradeService<>();
+    public void checkThreadsSafety() throws InterruptedException {
+        GradeService<Integer> integerGradeService = new GradeService<>();
         int threadsCount = 5;
         int gradesPerThread = 100;
         List<Thread> threads = new ArrayList<>();
-        for (int i = 0; i < threadsCount; i++) {
+        for(int i = 0;  i < threadsCount; i++){
             Thread thread = new Thread(() -> {
-                for (int j = 0; j < gradesPerThread; j++) {
-                    gradeService.addGrade(new StudentGrade<>("Поток", "география", j));
+                for(int j = 0; j < gradesPerThread; j++){
+                    integerGradeService.addGrade(new StudentGrade<>("Ivan", "geo", j));
                 }
             });
             thread.start();
             threads.add(thread);
         }
-        for (Thread thread : threads) {
+        for (Thread thread:threads){
             thread.join();
         }
-        assertEquals(threadsCount * gradesPerThread, gradeService.getAll().size());
+        assertEquals(threadsCount * gradesPerThread, integerGradeService.getAll().size());
     }
-
-
 }
